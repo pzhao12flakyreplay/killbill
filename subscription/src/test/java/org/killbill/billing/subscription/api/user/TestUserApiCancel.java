@@ -24,7 +24,6 @@ import org.joda.time.DateTime;
 import org.joda.time.Interval;
 import org.joda.time.LocalDate;
 import org.killbill.billing.ErrorCode;
-import org.killbill.billing.api.FlakyRetryAnalyzer;
 import org.killbill.billing.api.TestApiListener.NextEvent;
 import org.killbill.billing.catalog.api.BillingActionPolicy;
 import org.killbill.billing.catalog.api.BillingPeriod;
@@ -206,8 +205,7 @@ public class TestUserApiCancel extends SubscriptionTestSuiteWithEmbeddedDB {
 
     // Similar test to testCancelSubscriptionEOTWithChargeThroughDate except we uncancel and check things
     // are as they used to be and we can move forward without hitting cancellation
-    // Flaky, see https://github.com/killbill/killbill/issues/860
-    @Test(groups = "slow", retryAnalyzer = FlakyRetryAnalyzer.class)
+    @Test(groups = "slow")
     public void testUncancel() throws SubscriptionBillingApiException, SubscriptionBaseApiException {
         final String prod = "Shotgun";
         final BillingPeriod term = BillingPeriod.MONTHLY;

@@ -25,7 +25,6 @@ import javax.annotation.Nullable;
 import org.joda.time.DateTime;
 import org.joda.time.Interval;
 import org.killbill.billing.ErrorCode;
-import org.killbill.billing.api.FlakyRetryAnalyzer;
 import org.killbill.billing.api.TestApiListener.NextEvent;
 import org.killbill.billing.catalog.api.BillingActionPolicy;
 import org.killbill.billing.catalog.api.BillingPeriod;
@@ -107,8 +106,7 @@ public class TestUserApiError extends SubscriptionTestSuiteNoDB {
         }
     }
 
-    // Flaky, see https://github.com/killbill/killbill/issues/860
-    @Test(groups = "fast", retryAnalyzer = FlakyRetryAnalyzer.class)
+    @Test(groups = "fast")
     public void testChangeSubscriptionNonActive() throws SubscriptionBaseApiException {
         final SubscriptionBase subscription = testUtil.createSubscription(bundle, "Shotgun", BillingPeriod.ANNUAL, PriceListSet.DEFAULT_PRICELIST_NAME);
 
